@@ -45,7 +45,7 @@ app.get('/todos/:id', (req, res)=> {
   // Validate id: isValid()
   if (!ObjectId.isValid(id)) {
     // console.log('ID not Valid');
-    res.status(404).send();
+    res.status(404).send({error: 'ID not Found'});
   }
     // 404- send back empty string [not 400]
   // findById
@@ -53,14 +53,14 @@ app.get('/todos/:id', (req, res)=> {
     // success
       // if no Todo- send back 404 with empty body
       if(!todo) {
-        res.status(400).send({error: 'ID not Found'});
+        res.status(400).send();
       }
       // if todo- send it back
       res.status(200).send({todo});
       },(e)=>{
         // error
           // 400 - send empty body back
-        res.status(400).send({text: 'Gandiya Tod Denge MC'});
+        res.status(400).send();
   });
 
 
